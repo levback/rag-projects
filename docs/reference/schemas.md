@@ -200,6 +200,19 @@ Output file: [`examples/output/10_document_analysis_output.json`](../../examples
 
 ---
 
+## `run_analysis.sh` output files
+
+When using the original CLI (`bash scripts/run_analysis.sh`), three files are
+written to `--output-dir` (default: `examples/output/`):
+
+| File | Format | Contents |
+|------|--------|----------|
+| `<stem>_analysis.json` | JSON | Full structured `AnalysisResult` |
+| `<stem>_report_<timestamp>.txt` | Plain text | Human-readable summary + all Q&A pairs |
+| `<stem>_run_<timestamp>.log` | Text | Execution log: step timings, model loading, passage counts |
+
+---
+
 ## Saving output programmatically
 
 ```python

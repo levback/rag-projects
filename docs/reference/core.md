@@ -184,7 +184,23 @@ def create_llm(
 Factory function. Reads API keys / AWS credentials from environment, returns
 the appropriate `BaseLLM` subclass.
 
-**`extra` kwargs for Bedrock:** `region`, `profile`, `role_arn`
+**Per-provider `extra` kwargs:**
+
+| Provider | Extra kwargs accepted | Credential source |
+|----------|-----------------------|------------------|
+| `openai` | — | `OPENAI_API_KEY` env var |
+| `anthropic` | — | `ANTHROPIC_API_KEY` env var |
+| `bedrock` | `region`, `profile`, `role_arn` | boto3 credential chain |
+| `local` | — | None |
+
+**Bedrock model examples:**
+
+```python
+llm = create_llm("bedrock")  # default: Claude 3.5 Sonnet
+llm = create_llm("bedrock", model="amazon.nova-pro-v1:0")
+llm = create_llm("bedrock", model="anthropic.claude-3-haiku-20240307-v1:0", region="us-west-2")
+llm = create_llm("bedrock", model="meta.llama3-70b-instruct-v1:0")
+```
 
 **Used by:** all 10 examples in `--provider` mode
 

@@ -67,6 +67,17 @@ pip install pdfplumber nltk sentence-transformers faiss-cpu \
             pydantic python-dotenv pyyaml
 ```
 
+### HuggingFace model download sizes (first run only)
+
+Models are downloaded on first use and cached at `~/.cache/huggingface/`.
+
+| Model | Purpose | Download size |
+|-------|---------|---------------|
+| `t5-small` | Summarisation | ~240 MB |
+| `valhalla/t5-base-qg-hl` | Question generation | ~850 MB |
+| `deepset/roberta-base-squad2` | Question answering | ~480 MB |
+| `all-MiniLM-L6-v2` | Embeddings (all RAG pipelines) | ~90 MB |
+
 ---
 
 ## 4. Download NLTK data (required for sentence chunking)
@@ -182,3 +193,33 @@ sys.modules["sqlite3"] = sys.modules.pop("pysqlite3")
 The `RealtimeRAGAssistant` and `ResearchAgent` may hit DuckDuckGo rate limits
 in live mode. Use demo mode for development, and add `scrape_timeout` and
 `num_search_results` to `ResearchAgentConfig` to tune live mode.
+
+### `sentencepiece` import error on first QG run
+
+```bash
+pip install sentencepiece
+```
+
+Required by `valhalla/t5-base-qg-hl` for tokenisation.
+
+### `Token indices sequence length is longer than the specified maximum` warning
+
+Expected behaviour. The pipeline chunks inputs before passing them to the
+model, so some chunks near the boundary may still exceed the model's max
+input length. The truncated portion is silently dropped.
+
+### `NoCredentialsError` from boto3
+
+No AWS credentials found in the credential chain. Set environment variables
+or use `--aws-profile <profile>` in `scripts/run_analysis.sh`.
+
+### `ValidationException` from Amazon Bedrock
+
+The model is not enabled in your AWS account. Enable it in the
+[Bedrock console](https://console.aws.amazon.com/bedrock/home#/modelaccess)
+under **Model access**.
+
+### `OSError: google/t5-small … 401 Client Error`
+
+Use the model ID `t5-small` (without the `google/` prefix). The bare name
+is publicly accessible; the namespaced form requires Hub authentication.

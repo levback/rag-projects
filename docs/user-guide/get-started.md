@@ -75,6 +75,43 @@ export ANTHROPIC_API_KEY=sk-ant-...
 python examples/01_basic_rag.py --provider anthropic
 ```
 
+### Choosing a different Bedrock model
+
+```python
+from src.core.model_factory import create_llm
+
+# Amazon Nova Pro (multimodal, fast)
+llm = create_llm("bedrock", model="amazon.nova-pro-v1:0")
+
+# Claude 3 Haiku (cheaper, faster)
+llm = create_llm("bedrock", model="anthropic.claude-3-haiku-20240307-v1:0")
+
+# Meta Llama 3 70B
+llm = create_llm("bedrock", model="meta.llama3-70b-instruct-v1:0")
+```
+
+> Model availability varies by AWS region. Enable models in the
+> [Bedrock console](https://console.aws.amazon.com/bedrock/home#/modelaccess).
+
+### Using BaseLLM directly (without a pipeline)
+
+```python
+from src.core.model_factory import create_llm
+from src.core.base_llm import Message
+
+llm = create_llm("bedrock")
+
+# One-shot convenience method
+text = llm.chat("Explain transformer attention in two sentences.")
+
+# Full control with system prompt
+response = llm.complete([
+    Message(role="system", content="You are a concise technical writer."),
+    Message(role="user", content="What is self-attention?"),
+])
+print(response.text, response.input_tokens, response.output_tokens)
+```
+
 ---
 
 ## Step 5 — Use a RAG pipeline in your own code
@@ -114,11 +151,24 @@ bash scripts/download_example_pdf.sh
 python examples/10_document_analysis.py --pdf examples/pdfs/attention_is_all_you_need.pdf
 ```
 
-Or use the original CLI:
+Or use the original CLI with its full set of flags:
 
 ```bash
 bash scripts/run_analysis.sh --provider huggingface
 ```
+
+**`run_analysis.sh` flags:**
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--provider` | `huggingface` | `huggingface` \| `llm` |
+| `--llm-provider` | `bedrock` | `bedrock` \| `openai` \| `anthropic` \| `local` |
+| `--llm-model` | _(provider default)_ | Override model ID |
+| `--aws-region` | `us-east-1` | AWS region for Bedrock |
+| `--aws-profile` | _(default chain)_ | Named AWS CLI profile |
+| `--pdf` | _(example PDF)_ | Path to the PDF to analyse |
+| `--word-limit` | `200` | Max words per passage |
+| `--output-dir` | `examples/output` | Output directory |
 
 ---
 

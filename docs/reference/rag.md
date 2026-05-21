@@ -382,3 +382,39 @@ class Indexer:
     def save(self, path: str | Path) -> None: ...
     def load(self, path: str | Path) -> None: ...
 ```
+
+---
+
+## `vector_store.py`
+
+### `VectorStore`
+
+Low-level vector store abstraction shared by RAG pipelines that manage
+their own indices rather than using LangChain's wrapper directly.
+
+```python
+class VectorStore:
+    def __init__(
+        self,
+        provider: str = "chroma",          # "chroma" | "faiss"
+        collection_name: str = "default",
+        persist_directory: str = "data/vectordb",
+        distance_metric: str = "cosine",
+    ) -> None: ...
+
+    def add_texts(
+        self,
+        texts: list[str],
+        metadatas: list[dict] | None = None,
+    ) -> None: ...
+
+    def similarity_search(
+        self,
+        query: str,
+        k: int = 3,
+    ) -> list[str]: ...
+
+    def delete_collection(self) -> None: ...
+```
+
+**Used by:** `BasicRAGPipeline` · `IBMProductionRAG` · `MultiDocumentRAG`
