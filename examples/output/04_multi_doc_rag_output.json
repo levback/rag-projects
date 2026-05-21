@@ -1,0 +1,52 @@
+{
+  "project": "04_multi_doc_rag",
+  "description": "Multi-Document RAG — query across heterogeneous documents with provenance",
+  "documents_loaded": [
+    "climate_science.txt",
+    "renewable_energy.md",
+    "carbon_markets.txt"
+  ],
+  "total_chunks": 7,
+  "results": [
+    {
+      "question": "What greenhouse gases contribute to climate change and what warming has occurred?",
+      "answer": "The main greenhouse gases driving climate change are carbon dioxide (CO2), methane (CH4), and nitrous oxide (N2O). Human activities have caused approximately 1.1°C of warming above pre-industrial levels as of 2019, according to the IPCC.",
+      "retrieved_chunks": 1,
+      "source_documents": [
+        "climate_science.txt"
+      ]
+    },
+    {
+      "question": "What is the capacity factor of offshore wind and what is the largest offshore wind farm?",
+      "answer": "Offshore wind turbines can achieve capacity factors of 45–60%. The world's largest offshore wind farm is Hornsea 2 in the UK, with a capacity of 1.3 GW.",
+      "retrieved_chunks": 1,
+      "source_documents": [
+        "renewable_energy.md"
+      ]
+    },
+    {
+      "question": "How do compliance and voluntary carbon markets differ?",
+      "answer": "Compliance carbon markets are mandated by regulation (e.g., the EU ETS), while voluntary carbon markets allow companies to purchase credits to meet self-imposed net-zero targets. The EU ETS is the world's largest, covering 40% of EU greenhouse gas emissions.",
+      "retrieved_chunks": 1,
+      "source_documents": [
+        "carbon_markets.txt"
+      ]
+    },
+    {
+      "question": "What has happened to lithium-ion battery costs since 1991?",
+      "answer": "Lithium-ion battery costs have fallen by 97% since 1991, enabling grid-scale batteries to dispatch renewable energy on demand.",
+      "retrieved_chunks": 1,
+      "source_documents": [
+        "renewable_energy.md"
+      ]
+    },
+    {
+      "question": "Which documents discuss carbon prices?",
+      "answer": "Based on the retrieved documents, carbon prices are discussed in 'carbon_markets.txt'. EU ETS carbon prices reached over €100 per tonne in 2023.",
+      "retrieved_chunks": 1,
+      "source_documents": [
+        "carbon_markets.txt"
+      ]
+    }
+  ]
+}

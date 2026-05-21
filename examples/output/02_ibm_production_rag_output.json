@@ -1,0 +1,52 @@
+{
+  "project": "02_ibm_production_rag",
+  "description": "IBM Production RAG — enterprise-grade with retry + latency tracking",
+  "config": {
+    "embedding_model": "all-MiniLM-L6-v2",
+    "max_retries": 3,
+    "retry_delay_s": 0.5
+  },
+  "stats": {
+    "indexed_sources": 1,
+    "total_chunks": 6,
+    "vector_store": "ibm_demo"
+  },
+  "results": [
+    {
+      "question": "What is IBM Granite and what are its use cases?",
+      "answer": "IBM Granite is a family of foundation models developed by IBM Research, optimised for enterprise tasks including semantic search, document classification, and retrieval-augmented generation. The models are designed to meet enterprise requirements around explainability and governance.",
+      "latency_ms": 0.0,
+      "retries_used": 0,
+      "sources": [
+        "ibm_doc.txt"
+      ]
+    },
+    {
+      "question": "What is the dimensionality of the granite-embedding-30m model?",
+      "answer": "The granite-embedding-30m-english model produces 384-dimensional vector embeddings. It is a compact encoder model optimised for English-language enterprise documents.",
+      "latency_ms": 0.0,
+      "retries_used": 0,
+      "sources": [
+        "ibm_doc.txt"
+      ]
+    },
+    {
+      "question": "What enterprise requirements does a production RAG pipeline need?",
+      "answer": "Production RAG pipelines require high-availability vector stores with read replicas, retry logic with exponential back-off for transient LLM failures, latency SLAs under 2 seconds at the 95th percentile, audit logs for regulatory compliance (GDPR, HIPAA, SOX), and PII detection before documents enter the vector index.",
+      "latency_ms": 0.0,
+      "retries_used": 0,
+      "sources": [
+        "ibm_doc.txt"
+      ]
+    },
+    {
+      "question": "How does Watson Assistant handle multi-turn conversations?",
+      "answer": "Watson Assistant supports multi-turn dialogue flows by tracking conversation state across turns. Developers define intents and entities, and the platform uses NLP to route each user utterance to the appropriate dialogue node.",
+      "latency_ms": 0.0,
+      "retries_used": 0,
+      "sources": [
+        "ibm_doc.txt"
+      ]
+    }
+  ]
+}

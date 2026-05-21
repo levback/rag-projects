@@ -1,0 +1,71 @@
+{
+  "project": "10_document_analysis",
+  "description": "Document Analysis Pipeline — PDF extraction, summarisation, QG, QA, NER",
+  "mode": "demo",
+  "analysis": {
+    "title": "Attention Is All You Need — Demo Analysis",
+    "word_count": 448,
+    "sections": [
+      "Abstract",
+      "1. Introduction",
+      "2. Background",
+      "3. Model Architecture"
+    ],
+    "summary": "This paper proposes the Transformer, a neural sequence transduction architecture based entirely on attention mechanisms, eliminating recurrence and convolutions. The Transformer achieves 28.4 BLEU on WMT 2014 English-German and 41.0 BLEU on English-French translation, outperforming all prior models while requiring significantly less training time due to full parallelisation.",
+    "key_entities": [
+      {
+        "text": "Transformer",
+        "type": "ARCHITECTURE"
+      },
+      {
+        "text": "WMT 2014",
+        "type": "BENCHMARK"
+      },
+      {
+        "text": "LSTM",
+        "type": "ARCHITECTURE"
+      },
+      {
+        "text": "BLEU",
+        "type": "METRIC"
+      },
+      {
+        "text": "ConvS2S",
+        "type": "MODEL"
+      },
+      {
+        "text": "ByteNet",
+        "type": "MODEL"
+      },
+      {
+        "text": "Extended Neural GPU",
+        "type": "MODEL"
+      }
+    ],
+    "generated_questions": [
+      "What architecture does the Transformer replace?",
+      "What BLEU score does the Transformer achieve on WMT 2014 English-German?",
+      "Why is the Transformer more parallelisable than recurrent models?",
+      "How does the Transformer relate signals from distant positions?"
+    ],
+    "qa_pairs": [
+      {
+        "question": "What architecture does the Transformer replace?",
+        "answer": "The Transformer replaces recurrent neural networks (RNNs), LSTMs, and gated recurrent units (GRUs), as well as convolutional sequence-to-sequence models like ConvS2S, relying entirely on attention mechanisms instead."
+      },
+      {
+        "question": "What BLEU score does the Transformer achieve on WMT 2014 English-German?",
+        "answer": "The Transformer achieves 28.4 BLEU on WMT 2014 English-to-German translation, improving over the existing best results (including ensembles) by over 2 BLEU."
+      },
+      {
+        "question": "Why is the Transformer more parallelisable than recurrent models?",
+        "answer": "Recurrent models must process tokens sequentially (h_t depends on h_{t-1}), preventing parallelisation within training examples. The Transformer's attention mechanism computes all position interactions simultaneously."
+      },
+      {
+        "question": "How does the Transformer relate signals from distant positions?",
+        "answer": "The Transformer relates signals from any two positions in a constant number of operations via attention, unlike ConvS2S (linear growth in distance) or ByteNet (logarithmic growth), making long-range dependency learning easier."
+      }
+    ]
+  },
+  "sample_text_excerpt": "Abstract\nThe dominant sequence transduction models are based on complex recurrent or convolutional\nneural networks that include an encoder and a decoder. The best performing models also\nconnect the encoder and decoder through an attention mechanism. We propose a new simple\nnetwork architecture, the Transformer, based solely on attention mechanisms, dispensing\nwith recurrence and convolutions entirely. Experiments on two machine translation tasks\nshow these models to be superior in quality while…"
+}

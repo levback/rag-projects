@@ -1,0 +1,34 @@
+services:
+  app:
+    build: .
+    image: rag-app:latest
+    env_file: .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    depends_on:
+      - chromadb
+    networks:
+      - rag-net
+
+  chromadb:
+    image: chromadb/chroma:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma-data:/chroma/.chroma/index
+    environment:
+      - IS_PERSISTENT=TRUE
+      - PERSIST_DIRECTORY=/chroma/.chroma/index
+      - ANONYMIZED_TELEMETRY=FALSE
+    networks:
+      - rag-net
+
+volumes:
+  chroma-data:
+
+networks:
+  rag-net:
+    driver: bridge

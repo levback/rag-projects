@@ -1,0 +1,78 @@
+version: 1
+disable_existing_loggers: false
+
+formatters:
+  standard:
+    format: "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+  detailed:
+    format: "%(asctime)s [%(levelname)s] %(name)s (%(filename)s:%(lineno)d): %(message)s"
+    datefmt: "%Y-%m-%d %H:%M:%S"
+  json:
+    "()": "pythonjsonlogger.jsonlogger.JsonFormatter"
+    format: "%(asctime)s %(name)s %(levelname)s %(message)s"
+
+handlers:
+  console:
+    class: logging.StreamHandler
+    level: INFO
+    formatter: standard
+    stream: ext://sys.stdout
+
+  file:
+    class: logging.handlers.RotatingFileHandler
+    level: DEBUG
+    formatter: detailed
+    filename: logs/app.log
+    maxBytes: 10485760   # 10 MB
+    backupCount: 5
+    encoding: utf8
+
+  error_file:
+    class: logging.handlers.RotatingFileHandler
+    level: ERROR
+    formatter: detailed
+    filename: logs/error.log
+    maxBytes: 10485760
+    backupCount: 3
+    encoding: utf8
+
+loggers:
+  src.core:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+
+  src.rag:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+
+  src.processing:
+    level: INFO
+    handlers: [console, file]
+    propagate: false
+
+  src.inference:
+    level: DEBUG
+    handlers: [console, file]
+    propagate: false
+
+  httpx:
+    level: WARNING
+    handlers: [console]
+    propagate: false
+
+  openai:
+    level: WARNING
+    handlers: [console]
+    propagate: false
+
+  anthropic:
+    level: WARNING
+    handlers: [console]
+    propagate: false
+
+root:
+  level: INFO
+  handlers: [console, file, error_file]

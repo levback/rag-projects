@@ -1,0 +1,141 @@
+{
+  "project": "03_graph_rag",
+  "description": "Graph RAG — LLM triple extraction + NetworkX multi-hop retrieval",
+  "graph": {
+    "node_count": 24,
+    "edge_count": 21,
+    "triples": [
+      {
+        "head": "Albert Einstein",
+        "relation": "developed",
+        "tail": "Theory of General Relativity"
+      },
+      {
+        "head": "Theory of General Relativity",
+        "relation": "describes",
+        "tail": "gravity as spacetime curvature"
+      },
+      {
+        "head": "Albert Einstein",
+        "relation": "born_in",
+        "tail": "Ulm, Germany"
+      },
+      {
+        "head": "Albert Einstein",
+        "relation": "worked_at",
+        "tail": "Institute for Advanced Study"
+      },
+      {
+        "head": "Albert Einstein",
+        "relation": "received",
+        "tail": "Nobel Prize in Physics 1921"
+      },
+      {
+        "head": "Nobel Prize in Physics 1921",
+        "relation": "awarded_for",
+        "tail": "photoelectric effect"
+      },
+      {
+        "head": "Alan Turing",
+        "relation": "invented",
+        "tail": "Turing Machine"
+      },
+      {
+        "head": "Alan Turing",
+        "relation": "worked_at",
+        "tail": "Bletchley Park"
+      },
+      {
+        "head": "Alan Turing",
+        "relation": "studied_at",
+        "tail": "King's College Cambridge"
+      },
+      {
+        "head": "Alan Turing",
+        "relation": "studied_at",
+        "tail": "Princeton University"
+      },
+      {
+        "head": "Turing Award",
+        "relation": "named_after",
+        "tail": "Alan Turing"
+      },
+      {
+        "head": "Turing Award",
+        "relation": "given_by",
+        "tail": "ACM"
+      },
+      {
+        "head": "Geoffrey Hinton",
+        "relation": "pioneered",
+        "tail": "backpropagation"
+      },
+      {
+        "head": "Geoffrey Hinton",
+        "relation": "invented",
+        "tail": "Boltzmann Machine"
+      },
+      {
+        "head": "Geoffrey Hinton",
+        "relation": "worked_at",
+        "tail": "University of Toronto"
+      },
+      {
+        "head": "Geoffrey Hinton",
+        "relation": "joined",
+        "tail": "Google Brain"
+      },
+      {
+        "head": "Yann LeCun",
+        "relation": "invented",
+        "tail": "Convolutional Neural Networks"
+      },
+      {
+        "head": "Yann LeCun",
+        "relation": "worked_at",
+        "tail": "Bell Labs"
+      },
+      {
+        "head": "Geoffrey Hinton",
+        "relation": "shared",
+        "tail": "Turing Award 2018"
+      },
+      {
+        "head": "Yann LeCun",
+        "relation": "shared",
+        "tail": "Turing Award 2018"
+      },
+      {
+        "head": "Yoshua Bengio",
+        "relation": "shared",
+        "tail": "Turing Award 2018"
+      }
+    ]
+  },
+  "results": [
+    {
+      "question": "What did Einstein develop and why did he win the Nobel Prize?",
+      "answer": "According to the knowledge graph: Albert Einstein developed the Theory of General Relativity. However, he received the Nobel Prize in Physics in 1921 for the discovery of the photoelectric effect — not for General Relativity.",
+      "graph_context": "(Albert Einstein) --[developed]--> (Theory of General Relativity)\n(Theory of General Relativity) --[describes]--> (gravity as spacetime curvature)\n(Albert Einstein) --[born_in]--> (Ulm, Germany)\n(Albert Einstein) --[worked_at]--> (Institute for Advanced Study)\n(Albert Einstein) --[received]--> (Nobel Prize in Physics 1921)\n(Nobel Prize in Physics 1921) --[awarded_for]--> (photoelectric effect)\n\n(Nobel Prize in Physics 1921) --[awarded_for]--> (photoelectric effect)",
+      "triples_used": 8
+    },
+    {
+      "question": "Where did Alan Turing work during World War II?",
+      "answer": "Alan Turing worked at Bletchley Park during World War II, where he helped break the Enigma cipher used by Nazi Germany.",
+      "graph_context": "(Alan Turing) --[invented]--> (Turing Machine)\n(Alan Turing) --[worked_at]--> (Bletchley Park)\n(Alan Turing) --[studied_at]--> (King's College Cambridge)\n(Alan Turing) --[studied_at]--> (Princeton University)",
+      "triples_used": 4
+    },
+    {
+      "question": "Who are the Godfathers of Deep Learning and what did they share?",
+      "answer": "The Godfathers of Deep Learning — Geoffrey Hinton, Yann LeCun, and Yoshua Bengio — shared the Turing Award in 2018 for their foundational contributions to deep neural networks.",
+      "graph_context": "No relevant graph context found.",
+      "triples_used": 1
+    },
+    {
+      "question": "What is the connection between Turing and Princeton?",
+      "answer": "Alan Turing studied at Princeton University. The Turing machine, his theoretical model of computation, was conceived around the time of his academic work there.",
+      "graph_context": "(Alan Turing) --[invented]--> (Turing Machine)\n(Alan Turing) --[worked_at]--> (Bletchley Park)\n(Alan Turing) --[studied_at]--> (King's College Cambridge)\n(Alan Turing) --[studied_at]--> (Princeton University)",
+      "triples_used": 4
+    }
+  ]
+}

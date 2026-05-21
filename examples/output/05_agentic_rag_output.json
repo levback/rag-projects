@@ -1,0 +1,60 @@
+{
+  "project": "05_agentic_rag",
+  "description": "Agentic RAG — keyword-based intent routing (SEARCH vs DIRECT)",
+  "routing_summary": {
+    "total_queries": 7,
+    "routed_to_search": 5,
+    "routed_to_direct": 2
+  },
+  "results": [
+    {
+      "query": "What performance improvement did Python 3.12 achieve?",
+      "intent": "search",
+      "expected_intent": "search",
+      "answer": "Python 3.12 achieved a 25% speedup over Python 3.11 on standard benchmarks, delivered through the Faster CPython project. It also introduced f-string improvements and a new type parameter syntax for generics.",
+      "retrieved_chunks": 1
+    },
+    {
+      "query": "How many packages are on PyPI?",
+      "intent": "search",
+      "expected_intent": "search",
+      "answer": "The Python Package Index (PyPI) hosts over 500,000 packages as of 2024. pip is the standard package installer, and venv provides virtual environment isolation to prevent dependency conflicts.",
+      "retrieved_chunks": 1
+    },
+    {
+      "query": "What is the difference between Django and FastAPI?",
+      "intent": "search",
+      "expected_intent": "search",
+      "answer": "Django follows a batteries-included philosophy, bundling an ORM, admin panel, and authentication. FastAPI is designed for high-performance async APIs, with automatic OpenAPI documentation and type-hint-based validation.",
+      "retrieved_chunks": 1
+    },
+    {
+      "query": "Thank you, that was very helpful!",
+      "intent": "direct",
+      "expected_intent": "direct",
+      "answer": "You're welcome! Feel free to ask if you have more questions.",
+      "retrieved_chunks": 0
+    },
+    {
+      "query": "Can you summarise what we discussed so far?",
+      "intent": "search",
+      "expected_intent": "direct",
+      "answer": "We've discussed Python's history, its 3.12 performance improvements, the PyPI ecosystem, popular web frameworks, and scientific computing libraries.",
+      "retrieved_chunks": 1
+    },
+    {
+      "query": "What NumPy operations does pandas build on?",
+      "intent": "search",
+      "expected_intent": "search",
+      "answer": "Pandas builds on NumPy's n-dimensional array operations, extending them with a DataFrame abstraction for tabular data manipulation. NumPy provides the underlying C-speed array computations that pandas relies on.",
+      "retrieved_chunks": 1
+    },
+    {
+      "query": "Tell me a fun fact",
+      "intent": "direct",
+      "expected_intent": "direct",
+      "answer": "Python is named after Monty Python's Flying Circus, not the snake. Guido van Rossum was reading scripts for the show while writing Python.",
+      "retrieved_chunks": 0
+    }
+  ]
+}

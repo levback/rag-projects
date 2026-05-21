@@ -1,0 +1,38 @@
+{
+  "project": "09_langchain_rag_agent",
+  "description": "LangChain RAG Agent — LCEL chain mode + ReAct agent mode",
+  "config": {
+    "provider": "bedrock",
+    "collection": "langchain_demo",
+    "top_k": 2
+  },
+  "chain_results": [
+    {
+      "query": "What is LCEL and how do you compose chains with it?",
+      "answer": "LangChain Expression Language (LCEL) is a declarative composition style using the | operator: `prompt | llm | output_parser`. It supports streaming, async execution, parallel branches, and automatic fallbacks.",
+      "mode": "chain"
+    },
+    {
+      "query": "How does LangGraph support cyclical agent loops?",
+      "answer": "LangGraph uses a directed graph where nodes are agents or functions and edges define transitions. It supports cycles (enabling ReAct-style loops), conditional edges based on agent output, and persistent state via checkpointers — things LangChain chains cannot do natively.",
+      "mode": "chain"
+    },
+    {
+      "query": "What does LangSmith provide for LangChain applications?",
+      "answer": "LangSmith provides: full distributed tracing for every LLM call, latency breakdowns, prompt versioning and comparison, evaluation datasets, and CI hooks for regression testing — making it the observability layer for production LangChain applications.",
+      "mode": "chain"
+    }
+  ],
+  "agent_results": [
+    {
+      "query": "What tools does a LangChain agent use to decide actions?",
+      "answer": "LangChain agents bind LLMs to a set of tools described by name, docstring, and schema. The LLM produces structured tool-call outputs; the agent executor runs the tool and feeds the result back. The ReAct pattern iterates Thought → Action → Observation until the answer is ready.",
+      "mode": "agent"
+    },
+    {
+      "query": "What is the difference between LangChain and LangGraph?",
+      "answer": "LangChain provides chains (stateless, DAG-structured) and agents (tool-calling with ReAct). LangGraph extends this with stateful graph execution, supporting cycles, conditional branching, and multi-actor workflows where agents can pause, wait for input, or hand off to another agent.",
+      "mode": "agent"
+    }
+  ]
+}

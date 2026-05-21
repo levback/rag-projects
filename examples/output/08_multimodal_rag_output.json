@@ -1,0 +1,49 @@
+{
+  "project": "08_multimodal_rag",
+  "description": "Multimodal RAG — PDF text + VLM image captions + FAISS retrieval",
+  "index_summary": {
+    "text_chunks": 4,
+    "image_captions": 4,
+    "total": 8
+  },
+  "captions": [
+    {
+      "file": "page_1_fig1.png",
+      "caption": "Architectural diagram of the Transformer model showing parallel encoder and decoder stacks with attention mechanisms and feed-forward sub-layers."
+    },
+    {
+      "file": "page_3_table1.png",
+      "caption": "Table comparing BLEU scores across models on WMT 2014 En-De translation. The Transformer (big) achieves 28.4 BLEU, outperforming prior best by 2.0."
+    },
+    {
+      "file": "page_5_fig2.png",
+      "caption": "Heat map visualisation of 8 attention heads in encoder layer 5, showing each head attending to different word-to-word relationships."
+    },
+    {
+      "file": "page_7_eq1.png",
+      "caption": "Mathematical formula for scaled dot-product attention: Attention(Q,K,V) = softmax(QK^T / sqrt(d_k)) * V"
+    }
+  ],
+  "results": [
+    {
+      "question": "What architecture components does the Transformer use?",
+      "answer": "The Transformer consists of encoder and decoder stacks. Each stack has multiple layers of multi-head self-attention followed by position-wise feed-forward networks. Inputs are tokenised and added positional encodings before entering the encoder stack.",
+      "context_items": 2
+    },
+    {
+      "question": "What is the BLEU score of the Transformer on En-De translation?",
+      "answer": "The Transformer (big) achieves a BLEU score of 28.4 on the WMT 2014 English-to-German translation benchmark, compared to 26.36 for the previous best ConvS2S ensemble — an improvement of ~2 BLEU points.",
+      "context_items": 2
+    },
+    {
+      "question": "How does multi-head attention work visually?",
+      "answer": "Multi-head attention runs h attention functions in parallel on linearly projected queries, keys, and values. The outputs are concatenated and projected. Visualisations show different heads specialising: some attend to syntactic dependencies, others to coreference or semantic roles.",
+      "context_items": 2
+    },
+    {
+      "question": "What is the formula for scaled dot-product attention?",
+      "answer": "Scaled dot-product attention is computed as: Attention(Q, K, V) = softmax(Q K^T / √d_k) V, where d_k is the dimension of the keys. Scaling by √d_k prevents vanishing gradients in the softmax for large d_k values.",
+      "context_items": 2
+    }
+  ]
+}

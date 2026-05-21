@@ -1,0 +1,1 @@
+"""GenAI project – source package."""

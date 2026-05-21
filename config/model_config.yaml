@@ -1,0 +1,98 @@
+# Model Configuration
+# API keys should be set via environment variables — never hardcode secrets here.
+
+api_keys:
+  openai: ${OPENAI_API_KEY}
+  anthropic: ${ANTHROPIC_API_KEY}
+  huggingface: ${HUGGINGFACE_API_KEY}
+
+# ─── OpenAI ───────────────────────────────────────────────────────────────────
+openai:
+  default_model: gpt-4o
+  embedding_model: text-embedding-3-small
+  temperature: 0.7
+  max_tokens: 2048
+  top_p: 1.0
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+  request_timeout: 60
+  max_retries: 3
+
+# ─── Anthropic (Claude) ───────────────────────────────────────────────────────
+anthropic:
+  default_model: claude-3-5-sonnet-20241022
+  temperature: 0.7
+  max_tokens: 2048
+  request_timeout: 60
+  max_retries: 3
+# ─── Amazon Bedrock ─────────────────────────────────────────────────────────────────────────────
+# Credentials are resolved via the standard boto3 chain — do NOT hardcode them.
+# Priority: explicit env vars > AWS_PROFILE > ~/.aws/credentials > IAM role.
+# Required env vars (when not using a named profile or IAM role):
+#   AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
+bedrock:
+  default_model: anthropic.claude-3-5-sonnet-20241022-v2:0
+  # Other available models:
+  #   anthropic.claude-3-haiku-20240307-v1:0
+  #   amazon.nova-pro-v1:0
+  #   amazon.nova-lite-v1:0
+  #   meta.llama3-70b-instruct-v1:0
+  region: us-east-1
+  profile: null   # set to a named AWS CLI profile, or null for default chain
+  temperature: 0.7
+  max_tokens: 2048
+  request_timeout: 120
+  max_retries: 3
+# ─── Local Models ─────────────────────────────────────────────────────────────
+local:
+  model_path: models/
+  default_model: llama-3.1-8b-instruct
+  device: auto          # auto | cpu | cuda | mps
+  quantization: 4bit    # none | 4bit | 8bit
+  max_new_tokens: 512
+  temperature: 0.7
+
+# ─── Embeddings ───────────────────────────────────────────────────────────────
+embeddings:
+  provider: openai      # openai | huggingface | local
+  model: text-embedding-3-small
+  batch_size: 100
+  dimensions: 1536
+
+# ─── Vector Database ──────────────────────────────────────────────────────────
+vector_db:
+  provider: chroma      # chroma | faiss | pinecone | weaviate
+  persist_directory: data/vectordb
+  collection_name: default
+  distance_metric: cosine
+
+# ─── RAG Settings ─────────────────────────────────────────────────────────────
+rag:
+  top_k: 5
+  similarity_threshold: 0.75
+  chunk_size: 512
+  chunk_overlap: 64
+  rerank: false
+
+# ─── Document Analysis ────────────────────────────────────────────────────────
+document_analysis:
+  # "huggingface" runs fully locally; "llm" uses the API providers configured above.
+  # Active provider: bedrock (Amazon Bedrock via Converse API)
+  provider: llm
+  llm_provider: bedrock
+  llm_model: anthropic.claude-3-5-sonnet-20241022-v2:0
+
+  # HuggingFace model names
+  summarization_model: google/t5-small
+  question_generation_model: valhalla/t5-base-qg-hl
+  qa_model: deepset/roberta-base-squad2
+
+  # Passage splitting
+  passage_word_limit: 200
+  min_questions_per_passage: 3
+  summary_max_length: 150
+  summary_min_length: 30
+
+  # I/O paths
+  output_dir: data/output
+  cache_dir: data/cache

@@ -1,0 +1,60 @@
+{
+  "project": "01_basic_rag",
+  "description": "Basic RAG Pipeline — FAISS + SentenceTransformer + local LLM",
+  "config": {
+    "embedding_model": "all-MiniLM-L6-v2",
+    "top_k": 2,
+    "chunk_size": 400
+  },
+  "corpus_size": 5,
+  "results": [
+    {
+      "question": "How does multi-head attention work in the Transformer?",
+      "answer": "Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. Rather than performing a single attention function, the queries, keys, and values are linearly projected h times with different learned projections. Each parallel attention head produces d_v-dimensional output values, which are concatenated and projected once more to obtain the final values.",
+      "retrieved_chunks": [
+        "The Transformer architecture, introduced in 'Attention Is All You Need' (2017), relies entirely on self-attention mechanisms instead of recurrence or convolutions. The encoder maps input tokens to continuous representations, while the decoder auto-regressively generates output tokens. Multi-head attention allows the model to attend to information from different representation subspaces simultaneously.",
+        "GPT-3 is an autoregressive language model with 175 billion parameters. It uses in-context learning: given a few examples in the prompt, it can solve new tasks without gradient updates. GPT-3 demonstrated strong few-shot performance on translation, question answering, and common-sense reasoning benchmarks."
+      ],
+      "sources": [
+        "transformer_paper.txt",
+        "gpt3_paper.txt"
+      ]
+    },
+    {
+      "question": "What pre-training objectives does BERT use?",
+      "answer": "BERT uses two pre-training objectives: Masked Language Modeling (MLM), where 15% of input tokens are masked and the model predicts them from context, and Next-Sentence Prediction (NSP), where the model learns whether two sentences appear consecutively in the original corpus. These objectives allow BERT to build deep bidirectional representations of text.",
+      "retrieved_chunks": [
+        "Vector databases such as FAISS, Chroma, and Pinecone store high-dimensional embeddings and support approximate nearest-neighbor (ANN) search. FAISS uses inverted file indexes and product quantization to compress embeddings. Chroma is an open-source embedding database designed for AI applications, supporting persistent storage and metadata filtering.",
+        "Retrieval-Augmented Generation (RAG) combines a dense retrieval step with a generative language model. Documents are pre-indexed as dense vector embeddings. At inference time, the top-k most similar documents are retrieved and prepended to the generation prompt. RAG reduces hallucination by grounding answers in retrieved evidence."
+      ],
+      "sources": [
+        "vector_databases.txt",
+        "rag_paper.txt"
+      ]
+    },
+    {
+      "question": "How does RAG reduce hallucinations?",
+      "answer": "RAG reduces hallucination by grounding the language model's answers in retrieved evidence from a document corpus. Because the model is conditioned on actual retrieved passages, it is less likely to fabricate facts. The retrieval step acts as a soft knowledge base lookup, providing current, verifiable information that the model can cite in its answer.",
+      "retrieved_chunks": [
+        "BERT (Bidirectional Encoder Representations from Transformers) pre-trains deep bidirectional representations by jointly conditioning on both left and right context. It uses masked language modeling (MLM) and next-sentence prediction (NSP) as pre-training objectives. Fine-tuned BERT set new records on eleven NLP benchmarks at the time of its release in 2018.",
+        "GPT-3 is an autoregressive language model with 175 billion parameters. It uses in-context learning: given a few examples in the prompt, it can solve new tasks without gradient updates. GPT-3 demonstrated strong few-shot performance on translation, question answering, and common-sense reasoning benchmarks."
+      ],
+      "sources": [
+        "bert_paper.txt",
+        "gpt3_paper.txt"
+      ]
+    },
+    {
+      "question": "What is the difference between FAISS and Chroma?",
+      "answer": "FAISS is optimised for high-throughput ANN search using inverted file indexes and product quantization for memory efficiency. Chroma is designed for AI application development, offering persistent storage, metadata filtering, and an ergonomic Python API. FAISS suits large-scale offline workloads; Chroma suits application-level embedding retrieval with richer query semantics.",
+      "retrieved_chunks": [
+        "GPT-3 is an autoregressive language model with 175 billion parameters. It uses in-context learning: given a few examples in the prompt, it can solve new tasks without gradient updates. GPT-3 demonstrated strong few-shot performance on translation, question answering, and common-sense reasoning benchmarks.",
+        "The Transformer architecture, introduced in 'Attention Is All You Need' (2017), relies entirely on self-attention mechanisms instead of recurrence or convolutions. The encoder maps input tokens to continuous representations, while the decoder auto-regressively generates output tokens. Multi-head attention allows the model to attend to information from different representation subspaces simultaneously."
+      ],
+      "sources": [
+        "gpt3_paper.txt",
+        "transformer_paper.txt"
+      ]
+    }
+  ]
+}
